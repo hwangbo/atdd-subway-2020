@@ -100,40 +100,40 @@
                             <v-row>
                               <v-col cols="4">
                                 <v-select
-                                        v-model="departureTimeView.dayTime"
-                                        :items="departureTimeSelectView.dayTime"
-                                        width="400"
-                                        color="grey darken-1"
-                                        item-color="amber darken-3"
-                                        :rules="rules.departureTime.dayTime"
-                                        outlined
-                                        dense
+                                  v-model="departureTimeView.dayTime"
+                                  :items="departureTimeSelectView.dayTime"
+                                  width="400"
+                                  color="grey darken-1"
+                                  item-color="amber darken-3"
+                                  :rules="rules.departureTime.dayTime"
+                                  outlined
+                                  dense
                                 ></v-select>
                               </v-col>
                               <v-col cols="4">
                                 <v-select
-                                        v-model="departureTimeView.hour"
-                                        :items="departureTimeSelectView.hour"
-                                        label="시"
-                                        width="400"
-                                        color="grey darken-1"
-                                        item-color="amber darken-3"
-                                        :rules="rules.departureTime.hour"
-                                        outlined
-                                        dense
+                                  v-model="departureTimeView.hour"
+                                  :items="departureTimeSelectView.hour"
+                                  label="시"
+                                  width="400"
+                                  color="grey darken-1"
+                                  item-color="amber darken-3"
+                                  :rules="rules.departureTime.hour"
+                                  outlined
+                                  dense
                                 ></v-select>
                               </v-col>
                               <v-col cols="4">
                                 <v-select
-                                        v-model="departureTimeView.minute"
-                                        :items="departureTimeSelectView.minute"
-                                        label="분"
-                                        width="400"
-                                        color="grey darken-1"
-                                        item-color="amber darken-3"
-                                        :rules="rules.departureTime.minute"
-                                        outlined
-                                        dense
+                                  v-model="departureTimeView.minute"
+                                  :items="departureTimeSelectView.minute"
+                                  label="분"
+                                  width="400"
+                                  color="grey darken-1"
+                                  item-color="amber darken-3"
+                                  :rules="rules.departureTime.minute"
+                                  outlined
+                                  dense
                                 ></v-select>
                               </v-col>
                             </v-row>
@@ -220,6 +220,11 @@ export default {
     ...mapActions([SEARCH_PATH, FETCH_STATIONS]),
     async onSearchResult() {
       try {
+        const datas = {
+          source: this.path.source,
+          target: this.path.target
+        }
+        await this.searchPath(datas)
       } catch (e) {
         this.showSnackbar(SNACKBAR_MESSAGES.COMMON.FAIL)
         console.error(e)
@@ -255,7 +260,7 @@ export default {
         if (this.stations.length <= 0) {
           return
         }
-        this.allStationsView = this.stations.map((station) => {
+        this.allStationsView = this.stations.map(station => {
           return {
             text: station.name,
             value: station.id
