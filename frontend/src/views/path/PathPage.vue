@@ -229,7 +229,8 @@ export default {
       try {
         const datas = {
           source: this.path.source,
-          target: this.path.target
+          target: this.path.target,
+          type: this.path.type
         }
         await this.searchPath(datas)
       } catch (e) {

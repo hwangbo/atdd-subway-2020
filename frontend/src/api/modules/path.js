@@ -1,8 +1,8 @@
 import ApiService from '@/api'
 
 const PathService = {
-  get(sourceId, targetId) {
-    return ApiService.get(`/paths?source=${sourceId}&target=${targetId}&type=DISTANCE`)
+  get(sourceId, targetId, type) {
+    return ApiService.get(`/paths?source=${sourceId}&target=${targetId}&type=${type}`)
   }
 }
 
