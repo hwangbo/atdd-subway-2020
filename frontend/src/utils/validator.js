@@ -1,12 +1,12 @@
 const validator = {
   path: {
-    source: [],
-    target: []
+    source: [(v) => (Number.isInteger(v) && v > 0) || '역의 id는 양의 정수입니다.'],
+    target: [(v) => (Number.isInteger(v) && v > 0) || '역의 id는 양의 정수입니다.']
   },
   departureTime: {
-    dayTime: [],
-    hour: [],
-    minute: []
+    dayTime: [(v) => (v === "am" || v === "pm") || '오전, 오후 외의 값이 들어올 수 없습니다.'],
+    hour: [(v) => (Number.isInteger(v) && (v >=1 && v <= 12)) || '시각은 1이상 12이하의 정수여야 합니다.'],
+    minute: [(v) => (Number.isInteger(v) && (v >=0 && v <= 60)) || '분은 0이상 60이하의 정수여야 합니다.']
   },
   stationName: [(v) => !!v || '이름 입력이 필요합니다.', (v) => v.length > 0 || '이름은 1글자 이상 입력해야 합니다.'],
   line: {
